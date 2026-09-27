@@ -1,0 +1,91 @@
+@import "tailwindcss";
+
+/* Design tokens. Tailwind v4 utilities read these variables, so dark mode is just a re-map. */
+@theme {
+  --color-canvas: #ffffff;
+  --color-surface: #f5f5f6;
+  --color-hover: #efeff1;
+  --color-line: #e8e8eb;
+  --color-ink: #0b0b0c;
+  --color-muted: #6c6c74;
+  --color-faint: #a3a3ab;
+  --color-accent: #6d5dfc;
+  --color-accent-soft: #efedff;
+  --color-danger: #e5484d;
+  --color-ok: #30a46c;
+  --font-sans: ui-sans-serif, system-ui, -apple-system, "SF Pro Text", "Segoe UI", Roboto, sans-serif;
+  --font-mono: ui-monospace, "SF Mono", SFMono-Regular, Menlo, monospace;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-canvas: #0d0d10;
+    --color-surface: #16161a;
+    --color-hover: #1d1d22;
+    --color-line: #24242a;
+    --color-ink: #f2f2f4;
+    --color-muted: #8d8d96;
+    --color-faint: #56565e;
+    --color-accent: #8b7eff;
+    --color-accent-soft: #1f1c3a;
+    --color-danger: #ff6369;
+    --color-ok: #4cc38a;
+  }
+}
+
+@layer base {
+  html, body { margin: 0; }
+  body {
+    background: var(--color-canvas);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-size: 13px;
+    -webkit-font-smoothing: antialiased;
+    font-feature-settings: "cv11", "ss01";
+  }
+  ::selection { background: var(--color-accent-soft); }
+  ::-webkit-scrollbar { width: 8px; }
+  ::-webkit-scrollbar-thumb { background: var(--color-line); border-radius: 8px; border: 2px solid var(--color-canvas); }
+  input[type="range"] { accent-color: var(--color-accent); }
+}
+
+@layer components {
+  .popup { width: 360px; height: 560px; }
+  .tab-page { width: 400px; height: 600px; margin: 48px auto; border: 1px solid var(--color-line); border-radius: 20px; overflow: hidden; box-shadow: 0 20px 60px rgb(0 0 0 / .08); }
+
+  .field {
+    @apply h-10 w-full rounded-xl border border-line bg-canvas px-3 text-[13px] text-ink outline-none transition placeholder:text-faint;
+  }
+  .field:focus { border-color: var(--color-accent); box-shadow: 0 0 0 3px var(--color-accent-soft); }
+  textarea.field { @apply h-auto min-h-20 py-2.5; resize: none; }
+
+  .btn { @apply inline-flex h-9 cursor-pointer items-center justify-center gap-1.5 rounded-xl px-3.5 text-[13px] font-medium transition select-none active:scale-[.98] disabled:pointer-events-none disabled:opacity-40; }
+  .btn-primary { @apply bg-accent text-white hover:brightness-110; }
+  .btn-secondary { @apply border border-line bg-canvas text-ink hover:bg-hover; }
+  .btn-ghost { @apply text-muted hover:bg-hover hover:text-ink; }
+  .btn-danger { @apply bg-danger text-white hover:brightness-110; }
+
+  .icon-btn { @apply inline-grid size-8 cursor-pointer place-items-center rounded-lg text-muted transition hover:bg-hover hover:text-ink active:scale-95; }
+
+  .avatar {
+    background: hsl(var(--h) 85% 95%);
+    color: hsl(var(--h) 55% 40%);
+  }
+  @media (prefers-color-scheme: dark) {
+    .avatar { background: hsl(var(--h) 35% 17%); color: hsl(var(--h) 80% 75%); }
+  }
+
+  .toast {
+    @apply pointer-events-none fixed bottom-16 left-1/2 z-50 flex items-center gap-2 rounded-full bg-ink px-3.5 py-2 text-xs font-medium text-canvas opacity-0 shadow-lg;
+    transform: translate(-50%, 6px);
+    transition: opacity .18s, transform .18s;
+  }
+  .toast-in { opacity: 1; transform: translate(-50%, 0); }
+
+  .fade-in { animation: fade-in .18s ease-out; }
+  .shake { animation: shake .32s; }
+  .kbd { @apply rounded-md border border-line bg-surface px-1.5 py-px font-mono text-[10px] text-muted; }
+}
+
+@keyframes fade-in { from { opacity: 0; transform: translateY(4px); } }
+@keyframes shake { 20%, 60% { transform: translateX(-5px); } 40%, 80% { transform: translateX(5px); } }

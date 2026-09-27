@@ -1,0 +1,6 @@
+body { font: 15px system-ui, sans-serif; max-width: 420px; margin: 48px auto; padding: 0 16px; color: #111; }
+form, .card { display: grid; gap: 10px; padding: 20px; border: 1px solid #ddd; border-radius: 12px; }
+input, select { padding: 9px 10px; border: 1px solid #bbb; border-radius: 8px; font-size: 15px; }
+button { padding: 9px; border-radius: 8px; border: 0; background: #111; color: #fff; font-size: 15px; cursor: pointer; }
+nav { margin-bottom: 20px; font-size: 13px; } nav a { margin-right: 8px; }
+.bait { position: absolute; }

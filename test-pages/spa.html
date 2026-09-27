@@ -1,0 +1,15 @@
+<!doctype html><meta charset="utf-8"><title>App</title><link rel="stylesheet" href="/_style.css">
+<nav><a href="#" id="go">Go to /login (pushState)</a></nav>
+<main id="app"><p>Home</p></main>
+<script>
+  function renderLogin() {
+    history.pushState({}, '', '/spa/login');
+    const app = document.getElementById('app');
+    app.innerHTML = '<h2>Sign in</h2>';
+    const form = document.createElement('form');
+    form.innerHTML = '<input id="user" name="username" placeholder="Username"><input id="pass" name="password" type="password" placeholder="Password"><button>Sign in</button>';
+    form.addEventListener('submit', (e) => { e.preventDefault(); app.innerHTML = '<h2 id="done">Signed in</h2>'; history.pushState({}, '', '/spa/home'); });
+    app.append(form);
+  }
+  document.getElementById('go').onclick = (e) => { e.preventDefault(); setTimeout(renderLogin, 300); };
+</script>

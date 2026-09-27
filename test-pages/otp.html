@@ -1,0 +1,9 @@
+<!doctype html><meta charset="utf-8"><title>Verify</title><link rel="stylesheet" href="/_style.css">
+<h1>Two-factor authentication</h1><p>Enter the 6-digit code from your authenticator app.</p>
+<form action="/welcome.html" style="grid-template-columns:repeat(6,1fr)">
+  <input maxlength="1" inputmode="numeric" autocomplete="one-time-code" aria-label="Digit 1">
+  <input maxlength="1" inputmode="numeric" aria-label="Digit 2"><input maxlength="1" inputmode="numeric" aria-label="Digit 3">
+  <input maxlength="1" inputmode="numeric" aria-label="Digit 4"><input maxlength="1" inputmode="numeric" aria-label="Digit 5">
+  <input maxlength="1" inputmode="numeric" aria-label="Digit 6">
+  <button style="grid-column:1/-1">Verify</button>
+</form>
